@@ -8,7 +8,7 @@ import { CardProduto } from "./features/produtos/card-produto/card-produto";
 import { ListaProdutos } from "./features/produtos/lista-produtos/lista-produtos";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer, QuantidadeControle, CardProduto, ListaProdutos],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
