@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { LoggerService } from '../../../core/logger/logger.service';
-import { Produto } from '../../../model/produto';
-import { delay, Observable, of } from 'rxjs';
+import { Produto, ProdutoMapper } from '../../../model/produto';
+import { catchError, delay, map, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,10 @@ import { delay, Observable, of } from 'rxjs';
 export class ProdutoService {
 
   private logger = inject(LoggerService);
+  private http = inject(HttpClient);
+
+  private apiUrl = 'https://fakestoreapi.com/products';
+  
 
   private readonly listaMock = <Produto[]>[
     {
@@ -35,7 +40,7 @@ export class ProdutoService {
       preco: 2026.00,
       descricao: 'Hoje chefe?',
       imageUrl: 'images/Ronaldinho.jpg',
-      promo: true,
+      promo: false,
       estado: 'esgotado'
     },
     {
@@ -51,7 +56,13 @@ export class ProdutoService {
 
   listar(): Observable<Produto[]>{
     this.logger.info("PRODUTO SERVICE - retornando lista de produto");
-    return of(this.listaMock).pipe(delay(1000))
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      map(lista => lista.map(prod => ProdutoMapper.fromJson(prod))),
+      catchError(erro => {
+        this.logger.error("PRODUTO SERVICE - retornando lista de produto"); 
+        return of([]);
+      })
+    )
 
   }
 
