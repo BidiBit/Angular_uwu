@@ -7,7 +7,7 @@ import { ListaProdutos } from './features/produtos/lista-produtos/lista-produtos
 export const routes: Routes = [
     {path: '', component: Home},
     {path: 'produtos', component: ListaProdutos},
-    {path: 'produtos/id', component: ProdutoDetalhe},
+    {path: 'produtos/:id', component: ProdutoDetalhe},
     {path: 'sobre', component: Sobre},
     {path: '**', redirectTo: ''},
 ];

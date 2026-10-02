@@ -2,23 +2,28 @@
     <header class="barradetarefas">
         <h2>Catálogo</h2>
 
-        <button class="btn sopromo" [class.ativo]="apenasPromo()" (click)="alterarPromo()">
-            @if(apenasPromo()){
-                Mostrar todos
-            }
-            @else{
-                Promoções
-            }
-        </button>
-    </header>
+        <div class="acoes-header">
+            <button type="button" class="btn sopromo" [class.ativo] = "apenasPromo()" (click)="alterarPromo()">
+                @if (apenasPromo()) {
+                    Mostrar todos
+                }
+                @else {
+                    Promoções
+                }
+            </button>
 
+            <button type="button" class="btn primary" (click)="onCreateProduct('/produtos/novo')">
+                + Novo Produto
+            </button>
+        </div>
+    </header>
     @if (carregando()) {
         <p>Carregando produtos...</p>
     }
-    @else if(produtosExibidos().length == 0) {
+    @else if (produtosExibidos().length ===0) {
         <p class="vazio">Nenhum produto encontrado para exibir</p>
     }
-    @else{
+    @else {
         <div class="grid">
             @for (prod of produtosExibidos(); track prod.id) {
                 <app-card-produto [produto]="prod" (add)="onAddProduct($event)" (view)="onViewProduct($event)"></app-card-produto>
