@@ -22,3 +22,46 @@
     padding-left: 10px;
     height: 100px;
 }
+
+.cart-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #111;
+    cursor: pointer;
+  }
+  
+  .cart-wrapper:hover {
+    opacity: 0.8;
+  }
+  
+  .cart-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  
+  .cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -15px;
+    right: -6px;
+    background: #d32f2f;
+    color: #fff;
+    padding: 1px 1px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    min-width: 10px;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 100px;
+  }
+  

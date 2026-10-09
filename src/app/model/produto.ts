@@ -4,12 +4,11 @@ export interface ProdutoAPI {
     price: number;
     description: string;
     image: string;
-    category?: string
+    category: string
 }
 
 const estados = ['novo', 'usado', 'esgotado'] as const;
 export interface Produto {
-
     id: number;
     nome: string;
     preco: number;
@@ -17,6 +16,7 @@ export interface Produto {
     imageUrl: string;
     promo?: boolean;
     estado?: 'novo' | 'usado' | 'esgotado';
+    categoria: string;
 }
 export class ProductMapper {
     static fromJson(json: ProdutoAPI): Produto{
@@ -28,7 +28,8 @@ export class ProductMapper {
             descricao: json.description,
             imageUrl: json.image,
             promo: json.id % 5 == 0 && _estado != 'esgotado',
-            estado: _estado
+            estado: _estado,
+            categoria: json.category
 
         }
     }
@@ -39,7 +40,7 @@ export class ProductMapper {
             price: produto.preco,
             description: produto.descricao,
             image: produto.imageUrl,
-            category: 'general'
+            category: produto.categoria
         }
     }
 }

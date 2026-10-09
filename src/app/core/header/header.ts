@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CarrinhoService } from '../../features/carrinho/services/carrinho.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,9 @@ import { RouterLink } from '@angular/router';
 export class Header {
   titulo = input.required<string>();
   textoSobre = output<string>();
+  private carrinho = inject(CarrinhoService);
+
+  qtdCarrinho = this.carrinho.qtdItens;
 
   enviarSobre(): void{
     this.textoSobre.emit('Técnicas de Programação I. Desenvolvido por Marcos')

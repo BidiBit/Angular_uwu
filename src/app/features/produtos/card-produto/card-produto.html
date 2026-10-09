@@ -21,7 +21,6 @@
 
         <!--<div class="linhapreco">
             <span class="preco">{{produto().preco | currency:'BRL': 'symbol': '1.2-2 '}}</span>
-            <app-quantidade-controle [(contador)]="quantidade"></app-quantidade-controle>
         </div>-->
         <div class="preco-container">
             @if(produto().promo){
@@ -38,8 +37,9 @@
                 <span class="preco">
                     {{produto().preco  | currency: 'BRL'}}
                 </span>
-
+                
             }
+            <app-quantidade-controle [(contador)]="quantidade"></app-quantidade-controle>
         </div>
 
         <div class="acoes">
